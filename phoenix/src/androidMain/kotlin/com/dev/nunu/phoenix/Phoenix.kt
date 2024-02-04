@@ -30,7 +30,7 @@ class Phoenix : Activity() {
     companion object {
         @JvmStatic
         fun triggerRebirth(context: Context) {
-            // TODO: Implement this method
+            triggerRebirth(context, getRestartIntent(context))
         }
 
         @JvmStatic
@@ -43,9 +43,9 @@ class Phoenix : Activity() {
                 .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
 
             val intent = Intent(context, Phoenix::class.java)
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 .putExtra(KEY_RESTART_INTENTS, nextIntents)
                 .putExtra(KEY_MAIN_PROCESS_PID, Process.myPid())
-                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
 
             context.startActivity(intent)
         }
